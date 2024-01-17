@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Chamada</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Controle de Chamada</h2>
+
+  <form id="alunoForm">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" required>
+    <button type="button" onclick="adicionarAluno()">Adicionar Aluno</button>
+  </form>
+
+  <table id="alunosTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Presença</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Lista de alunos será exibida aqui -->
+    </tbody>
+  </table>
+
+  <script>
+    function adicionarAluno() {
+      // Lógica para adicionar um aluno (usando AJAX/fetch para interagir com o back-end)
+    }
+
+    function carregarAlunos() {
+      // Lógica para carregar a lista de alunos do back-end (usando AJAX/fetch)
+    }
+
+    function editarAluno(id) {
+      // Lógica para editar um aluno (usando AJAX/fetch)
+    }
+
+    function excluirAluno(id) {
+      // Lógica para excluir um aluno (usando AJAX/fetch)
+    }
+
+    function marcarPresenca(id) {
+      // Lógica para marcar a presença de um aluno (usando AJAX/fetch)
+    }
+
+    // Carregar alunos quando a página é carregada
+    document.addEventListener('DOMContentLoaded', () => {
+      carregarAlunos();
+    });
+  </script>
+</body>
+
+</html>
