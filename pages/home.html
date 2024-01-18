@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Controle de Chamada</title>
+</head>
+
+<body>
+  <!-- Barra lateral -->
+  <nav class="sidebar">
+    <span><a href="./assets/Logo.png"></a></span>
+    <h3>Navegação</h3>
+    <a href="#pagina1">Página 1</a>
+    <a href="#pagina2">Página 2</a>
+    <!-- Adicione mais links conforme necessário -->
+    <button id="logoutButton" type="button">Sair</button>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <main class="main-content">
+    <h2>Controle de Chamada</h2>
+
+    <form id="alunoForm">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" required>
+      <button type="button" onclick="adicionarAluno()">Adicionar Aluno</button>
+    </form>
+
+    <table id="alunosTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Presença</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+
+</html>

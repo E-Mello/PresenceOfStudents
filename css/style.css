@@ -32,3 +32,21 @@ th {
 button {
   cursor: pointer;
 }
+
+/* Estilo para a barra lateral */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  background-color: #333;
+  padding: 20px;
+  color: white;
+}
+
+/* Estilo para o conteúdo principal */
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}

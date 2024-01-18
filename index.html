@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Controle de Chamada</title>
+  <link rel="stylesheet" href="./css//login.css">
+  <title>Login</title>
 </head>
-
 <body>
-  <h2>Controle de Chamada</h2>
 
-  <form id="alunoForm">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" required>
-    <button type="button" onclick="adicionarAluno()">Adicionar Aluno</button>
+<div class="login-container">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="username">Usuário:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="button" onclick="realizarLogin()">Entrar</button>
   </form>
+</div>
 
-  <table id="alunosTable">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Presença</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Lista de alunos será exibida aqui -->
-    </tbody>
-  </table>
 
-<script src="./js/script.js"></script>
+<script src="./js/login.js"></script>
 </body>
-
 </html>
