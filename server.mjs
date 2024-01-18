@@ -28,59 +28,65 @@ connection.connect((err) => {
 // Middleware para analisar solicitações JSON
 app.use(json());
 
-// Rotas CRUD para Alunos
-app.post('/alunos', (req, res) => {
-  const aluno = req.body;
-  connection.query('INSERT INTO alunos SET ?', aluno, (err, results) => {
+// Create students
+app.post('/students', (req, res) => {
+  const { nome, email } = req.body;
+  const students = { nome, email };
+  connection.query('INSERT INTO students SET ?', students, (err, results) => {
     if (err) {
-      console.error('Erro ao adicionar aluno:', err);
+      console.error('Erro ao adicionar students:', err);
       res.status(500).send('Erro interno do servidor');
     } else {
-      res.status(201).send('Aluno adicionado com sucesso');
+      res.status(201).send('students adicionado com sucesso');
+      console.log('students adicionado com sucesso');
     }
   });
 });
 
-app.get('/alunos', (req, res) => {
-  connection.query('SELECT * FROM alunos', (err, results) => {
+// Read students
+app.get('/students', (req, res) => {
+  connection.query('SELECT * FROM students', (err, results) => {
     if (err) {
-      console.error('Erro ao buscar alunos:', err);
+      console.error('Erro ao buscar students:', err);
       res.status(500).send('Erro interno do servidor');
     } else {
       res.json(results);
+      res.status(200).send('students buscado com sucesso');
     }
   });
 });
 
-app.put('/alunos/:id', (req, res) => {
+// Update students
+app.put('/students/:id', (req, res) => {
   const id = req.params.id;
-  const novoAluno = req.body;
-  connection.query('UPDATE alunos SET ? WHERE id = ?', [novoAluno, id], (err, results) => {
+  const newStudents = req.body;
+  connection.query('UPDATE students SET ? WHERE id = ?', [newStudents, id], (err, results) => {
     if (err) {
-      console.error('Erro ao atualizar aluno:', err);
+      console.error('Erro ao atualizar students:', err);
       res.status(500).send('Erro interno do servidor');
     } else {
-      res.send('Aluno atualizado com sucesso');
+      res.send('students atualizado com sucesso');
     }
   });
 });
 
-app.delete('/alunos/:id', (req, res) => {
+// Delete students
+app.delete('/students/:id', (req, res) => {
   const id = req.params.id;
-  connection.query('DELETE FROM alunos WHERE id = ?', id, (err, results) => {
+  connection.query('DELETE FROM students WHERE id = ?', id, (err, results) => {
     if (err) {
-      console.error('Erro ao excluir aluno:', err);
+      console.error('Erro ao excluir students:', err);
       res.status(500).send('Erro interno do servidor');
     } else {
-      res.send('Aluno excluído com sucesso');
+      res.send('students excluído com sucesso');
     }
   });
 });
 
-// Marcar presença
-app.post('/marcar-presenca/:id', (req, res) => {
+// Mark attendance
+app.post('/mark-attendance/:id', (req, res) => {
   const id = req.params.id;
-  connection.query('UPDATE alunos SET presenca = 1 WHERE id = ?', id, (err, results) => {
+  connection.query('UPDATE students SET attendance = 1 WHERE id = ?', id, (err, results) => {
     if (err) {
       console.error('Erro ao marcar presença:', err);
       res.status(500).send('Erro interno do servidor');
@@ -90,7 +96,7 @@ app.post('/marcar-presenca/:id', (req, res) => {
   });
 });
 
-// Iniciar o servidor
+// Raise server
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
