@@ -1,16 +1,19 @@
-const mysql = require('mysql2');
-const express = require('express');
-const bodyParser = require('body-parser');
+import { createConnection } from 'mysql2';
+import dotenv from 'dotenv';
+import express from 'express';
+import pkg from 'body-parser';
 
 const app = express();
 const port = 3000;
+const { json } = pkg;
+dotenv.config();
 
 // Configuração do banco de dados
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'seu_usuario',
-  password: 'sua_senha',
-  database: 'sua_base_de_dados',
+const connection = createConnection({
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
 });
 
 // Conectar ao banco de dados
@@ -23,7 +26,7 @@ connection.connect((err) => {
 });
 
 // Middleware para analisar solicitações JSON
-app.use(bodyParser.json());
+app.use(json());
 
 // Rotas CRUD para Alunos
 app.post('/alunos', (req, res) => {
