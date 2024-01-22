@@ -1,0 +1,12 @@
+form {
+  margin-bottom: 20px;
+}
+
+#alunos-presentes {
+  list-style-type: none;
+  padding: 0;
+}
+
+#alunos-presentes li {
+  margin-bottom: 5px;
+}

@@ -1,51 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="../assets/Logo.png" type="image/x-icon" />
+    <title>Livro de presença</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/style.css">
-  <title>Controle de Chamada</title>
-</head>
+  <body>
+    <!-- Barra lateral -->
+    <nav class="sidebar">
+      <div class="logo">
+        <a href="#"><img src="../assets/Logo.png" alt="Logo" /></a>
+      </div>
+      <div class="nav-header">
+        <h3>Menu</h3>
+      </div>
+      <div class="nav-links">
+        <a href="./welcome">Home</a>
+        <a href="./student-control">Controle de Alunos</a>
+        <a href="./attendance-record">Registro de Presença</a>
+        <!-- Adicione mais links conforme necessário -->
+      </div>
+      <div class="logout">
+        <button id="logoutButton" type="button">Sair</button>
+      </div>
+    </nav>
 
-<body>
-  <!-- Barra lateral -->
-  <nav class="sidebar">
-    <span><a href="./assets/Logo.png"></a></span>
-    <h3>Navegação</h3>
-    <a href="#pagina1">Página 1</a>
-    <a href="#pagina2">Página 2</a>
-    <!-- Adicione mais links conforme necessário -->
-    <button id="logoutButton" type="button">Sair</button>
-  </nav>
+    <!-- Conteúdo principal -->
+    <main class="main-content"></main>
 
-  <!-- Conteúdo principal -->
-  <main class="main-content">
-    <h2>Controle de Chamada</h2>
-
-    <form id="alunoForm">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" required>
-      <button type="button" onclick="adicionarAluno()">Adicionar Aluno</button>
-    </form>
-
-    <table id="alunosTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Presença</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-      </tbody>
-    </table>
-  </main>
-
-  <script src="../js/script.js"></script>
-  <script src="../js/login.js"></script>
-</body>
-
+    <script src="../js/script.js"></script>
+    <script src="../js/change-pages.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/attendance-record.js"></script>
+    <script src="../js/student-control.js"></script>
+  </body>
 </html>
