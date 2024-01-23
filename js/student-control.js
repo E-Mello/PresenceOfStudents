@@ -7,34 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   if (window.location.hash === "./student-control") {
     carregarAlunos();
   }
-  // Inicia a observação quando o DOM é carregado
-  observarConteudo();
 });
-
-// Função para carregar os alunos quando o conteúdo de main-content muda
-function observarConteudo() {
-  const mainContent = document.querySelector(".main-content");
-
-  // Cria um MutationObserver para observar mudanças no conteúdo
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      // Verifica se a mutação está relacionada ao conteúdo de main-content
-      if (mutation.target === mainContent) {
-        // Verifica se a página "student-control" está sendo exibida
-        if (window.location.hash === "./student-control") {
-          // Chama a função para carregar e renderizar os alunos
-          carregarAlunos();
-        }
-      }
-    });
-  });
-
-  // Configurações para observar mudanças no conteúdo
-  const config = { childList: true, subtree: true };
-
-  // Inicia a observação no elemento main-content
-  observer.observe(mainContent, config);
-}
 
 function carregarAlunos() {
   // Lógica para carregar a lista de alunos do back-end (usando AJAX/fetch)
@@ -50,9 +23,6 @@ function carregarAlunos() {
       students = userData;
       console.log("User Data:", userData);
 
-      // Limpa a tabela antes de renderizar os alunos
-      limparTabela();
-
       // Renderiza os alunos após o término da requisição
       renderizarAlunos();
     })
@@ -61,14 +31,14 @@ function carregarAlunos() {
     });
 }
 
-function limparTabela() {
-  // Limpa a tabela de alunos antes de renderizar novos dados
-  const tabela = document.getElementById("alunosTable");
-  tabela.innerHTML =
-    "<thead><tr><th>ID</th><th>Nome</th><th>Presença</th><th>Ações</th></tr></thead><tbody></tbody>";
+function limparCampos() {
+  // Limpa os campos antes de adicionar um novo aluno
+  document.getElementById("nome").value = "";
+  document.getElementById("email").value = "";
 }
 
 function renderizarAlunos() {
+  limparCampos();
   const tabela = document.getElementById("alunosTable");
 
   if (tabela) {
@@ -84,20 +54,46 @@ function renderizarAlunos() {
       cellNome.innerHTML = student.nome;
       cellEmail.innerHTML = student.email;
       cellAcoes.innerHTML =
-        '<button onclick="removerAluno(' +
+        '<div class="thAcoes">' +
+        '<button class="thAcoesEdit" onclick="editarAluno(' +
+        student.id +
+        ')">Editar</button>' +
+        '<button class="thAcoesDel" onclick="removerAluno(' +
         student.id +
         ')">Remover</button>' +
-        '<button onclick="editarAluno(' +
-        student.id +
-        ')">Editar</button>';
+        "</div>";
     });
   } else {
-    console.error("Tabela não encontrada no DOM.");
+    console.error("Tabela não encontrada na DOM.");
   }
 }
 
-function adicionarAluno() {
-  // Lógica para adicionar um aluno (usando AJAX/fetch para interagir com o back-end)
+async function adicionarAluno() {
+  try {
+    // Lógica para adicionar um aluno (usando AJAX/fetch para interagir com o back-end)
+    const response = await fetch("http://localhost:3000/students", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome: document.getElementById("nome").value,
+        email: document.getElementById("email").value,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    // Print do retorno
+    console.log("Response Data:", response);
+
+    // Recarregar os alunos
+    carregarAlunos();
+    console.log("Aluno adicionado com sucesso!");
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 function editarAluno(id) {

@@ -30,7 +30,7 @@ app.use(
   cors({
     origin: "http://127.0.0.1:5500", // Permitir apenas este domínio
   })
-); // Adicione esta linha
+);
 
 // Middleware para analisar solicitações JSON
 app.use(json());
@@ -44,8 +44,17 @@ app.post("/students", (req, res) => {
       console.error("Erro ao adicionar students:", err);
       res.status(500).send("Erro interno do servidor");
     } else {
-      res.status(201).send("students adicionado com sucesso");
-      console.log("students adicionado com sucesso");
+      // Aqui deu certo a inserção, porém, é necessário pegar a lista de alunos atualizada e
+      // devolver pro front-end renderizar novamente
+      connection.query("SELECT * FROM students", (err, results) => {
+        if (err) {
+          console.error("Erro ao obter students:", err);
+          res.status(500).send("Erro interno do servidor");
+        } else {
+          // Enviar a lista de alunos como resposta em formato JSON
+          res.send(results);
+        }
+      });
     }
   });
 });

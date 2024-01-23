@@ -1,0 +1,58 @@
+form {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  cursor: pointer;
+}
+
+.thAcoes {
+  display: flex;
+  gap: 1rem;
+}
+
+.thAcoes button {
+  border: none;
+  color: white;
+  padding: 0.5rem 0.5rem;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+.thAcoesEdit {
+  background: #149fce;
+}
+
+.thAcoesEdit:hover {
+  background: #107ba0;
+}
+
+.thAcoesDel {
+  background: #e96357;
+}
+
+.thAcoesDel:hover {
+  background: #8b3b34;
+}
