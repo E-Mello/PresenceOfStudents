@@ -1,6 +1,37 @@
 <div>
   <h2>Controle de Alunos</h2>
 
+  <!-- Modal-->
+  <div id="modalEdit">
+    <div id="modal">
+      <div class="modalContent">
+        <span class="close" onclick="fecharModalEdit()">&times;</span>
+        <form class="formUpdateStudent">
+          <h1>Atualizar cadastro de aluno</h1>
+          <div class="formInputs">
+            <div>
+              <label for="editNome">Nome:</label>
+              <input type="text" id="editNome" required />
+            </div>
+            <div>
+              <label for="editEmail">E-mail:</label>
+              <input
+                type="email"
+                id="editEmail"
+                required
+                autocomplete="email"
+              />
+            </div>
+          </div>
+          <button type="button" id="btnEdit" onclick="editarAluno()">
+            Atualizar aluno
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Form -->
+
   <form id="alunoForm">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" required />

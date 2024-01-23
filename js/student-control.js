@@ -1,5 +1,8 @@
 //Constants
 let students = {};
+let idStudentEdit = 0;
+let nameStudentEdit = "";
+let emailStudentEdit = "";
 
 // Carrega os alunos quando a página é carregada
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -61,7 +64,7 @@ function renderizarAlunos() {
       cellEmail.innerHTML = student.email;
       cellAcoes.innerHTML =
         '<div class="thAcoes">' +
-        '<button class="thAcoesEdit" onclick="editarAluno(' +
+        '<button class="thAcoesEdit" onclick="openModalEdit(' +
         student.id +
         ')">Editar</button>' +
         '<button class="thAcoesDel" onclick="excluirAluno(' +
@@ -102,8 +105,66 @@ async function adicionarAluno() {
   }
 }
 
-function editarAluno(id) {
+function limparModal() {
+  idStudentEdit = 0;
+  nameStudentEdit = "teste";
+  emailStudentEdit = "teste";
+}
+
+function openModalEdit(id) {
+  const student = students.find((student) => student.id === id);
+  if (student) {
+    console.log("Abrindo modal para edição do aluno: " + id);
+    console.log("Aluno: " + student.nome);
+    console.log("Email: " + student.email);
+    idStudentEdit = id;
+    nameStudentEdit = student.nome;
+    emailStudentEdit = student.email;
+    document.getElementById("modalEdit").style.display = "block";
+    document.querySelector("#editNome").value = nameStudentEdit;
+    document.querySelector("#editEmail").value = emailStudentEdit;
+  } else {
+    console.error("Estudante não encontrado: " + id);
+  }
+}
+
+function fecharModalEdit() {
+  limparModal();
+  document.getElementById("modalEdit").style.display = "none";
+}
+
+async function editarAluno() {
   // Lógica para editar um aluno (usando AJAX/fetch)
+  try {
+    const response = await fetch(
+      "http://localhost:3000/students/" + idStudentEdit,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nome: document.querySelector("#editNome").value,
+          email: document.querySelector("#editEmail").value,
+        }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    // Print do retorno
+    console.log("Response Data:", response);
+
+    // Limpa a tabela
+    limparTabela();
+    // Recarregar os alunos
+    carregarAlunos();
+    fecharModalEdit();
+    console.log("Aluno adicionado com sucesso!");
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 async function excluirAluno(id) {
