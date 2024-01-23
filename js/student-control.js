@@ -37,6 +37,12 @@ function limparCampos() {
   document.getElementById("email").value = "";
 }
 
+function limparTabela() {
+  // Limpa a tabela de alunos antes de renderizar novos dados
+  const tabela = document.getElementById("alunosTable");
+  tabela.innerHTML = "";
+}
+
 function renderizarAlunos() {
   limparCampos();
   const tabela = document.getElementById("alunosTable");
@@ -58,7 +64,7 @@ function renderizarAlunos() {
         '<button class="thAcoesEdit" onclick="editarAluno(' +
         student.id +
         ')">Editar</button>' +
-        '<button class="thAcoesDel" onclick="removerAluno(' +
+        '<button class="thAcoesDel" onclick="excluirAluno(' +
         student.id +
         ')">Remover</button>' +
         "</div>";
@@ -100,6 +106,24 @@ function editarAluno(id) {
   // Lógica para editar um aluno (usando AJAX/fetch)
 }
 
-function excluirAluno(id) {
+async function excluirAluno(id) {
   // Lógica para excluir um aluno (usando AJAX/fetch)
+  try {
+    const response = await fetch("http://localhost:3000/students/" + id, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    // Print do retorno
+    console.log("Response Data:", response);
+
+    // Limpa a tabela
+    limparTabela();
+    // Recarregar os alunos
+    carregarAlunos();
+    console.log("Aluno adicionado com sucesso!");
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
