@@ -1,14 +1,36 @@
-<div>
-  <h2>Registro de Presença</h2>
-
-  <form id="registro-form">
-    <label for="nome-aluno">Nome do Aluno:</label>
-    <input type="text" id="nome-aluno" required />
-    <button type="button" onclick="registrarPresenca()">
-      Registrar Presença
-    </button>
-  </form>
-
-  <h3>Alunos Presentes:</h3>
-  <ul id="alunos-presentes"></ul>
+<div class="attendanceContent">
+  <div id="dialogFather">
+    <h1>Registro de chamada dos alunos</h1>
+    <p>Para efetuar a chamada, basta clicar no botão abaixo</p>
+    <dialog id="myDialog">
+      <span class="close" onclick="closeDialog()">&times;</span>
+      <h2 class="dialogTitle">Registrar Chamada</h2>
+      <div id="dialogContent"></div>
+      <div id="dialogFooter">
+        <button
+          id="btnRecordAttendance"
+          onclick="document.querySelector('dialog').close();"
+        >
+          Registrar Presença
+        </button>
+      </div>
+    </dialog>
+  </div>
+  <button
+    id="btnOpenDialog"
+    onclick="document.querySelector('dialog').showModal()"
+  >
+    Efetuar Chamada
+  </button>
+  <table id="attendanceTable">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Presença</th>
+        <th>Data da presença</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 </div>

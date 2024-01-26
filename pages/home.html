@@ -5,37 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/student-control.css" />
+    <link rel="stylesheet" href="../css/attendance-record.css" />
     <link rel="shortcut icon" href="../assets/Logo.png" type="image/x-icon" />
     <title>Livro de presença</title>
   </head>
 
   <body>
-    <!-- Barra lateral -->
-    <nav class="sidebar">
-      <div class="logo">
-        <a href="#"><img src="../assets/Logo.png" alt="Logo" /></a>
+    <div id="allContent">
+      <!-- Barra lateral -->
+      <div id="divNav">
+        <nav class="sidebar">
+          <div class="logo">
+            <a href="#"><img src="../assets/Logo.png" alt="Logo" /></a>
+          </div>
+          <div class="nav-header">
+            <h3>Menu</h3>
+          </div>
+          <div class="nav-links">
+            <a href="./welcome">Home</a>
+            <a href="./student-control">Controle de Alunos</a>
+            <a href="./attendance-record">Registro de Presença</a>
+            <!-- Adicione mais links conforme necessário -->
+          </div>
+          <div class="logout">
+            <button id="logoutButton" type="button">Sair</button>
+          </div>
+        </nav>
       </div>
-      <div class="nav-header">
-        <h3>Menu</h3>
-      </div>
-      <div class="nav-links">
-        <a href="./welcome">Home</a>
-        <a href="./student-control">Controle de Alunos</a>
-        <a href="./attendance-record">Registro de Presença</a>
-        <!-- Adicione mais links conforme necessário -->
-      </div>
-      <div class="logout">
-        <button id="logoutButton" type="button">Sair</button>
-      </div>
-    </nav>
 
-    <!-- Conteúdo principal -->
-    <main class="main-content"></main>
+      <!-- Conteúdo principal -->
+      <div id="divMain">
+        <main class="main-content"></main>
+      </div>
 
-    <script src="../js/script.js"></script>
-    <script src="../js/change-pages.js"></script>
-    <script src="../js/login.js"></script>
-    <script src="../js/attendance-record.js"></script>
-    <script src="../js/student-control.js"></script>
+      <script type="text/javascript" src="../js/script.js"></script>
+      <script type="text/javascript" src="../js/change-pages.js"></script>
+      <script type="text/javascript" src="../js/login.js"></script>
+      <script type="text/javascript" src="../js/attendance-record.js"></script>
+      <script type="text/javascript" src="../js/student-control.js"></script>
+    </div>
   </body>
 </html>
