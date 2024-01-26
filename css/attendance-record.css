@@ -20,24 +20,8 @@
     background-color: #3c71ec;
 }
 
-#btnRecordAttendance {
-    background-color: #19e32a;
-    color: black;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 5px;
-    width: 12vw;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#btnRecordAttendance:hover {
-    background-color: #34c034;
-}
-
 #myDialog {
     width: 75vw;
-    height: 70vh;
     position: relative;
     overflow: auto;
     background-color: rgb(248, 248, 248);
@@ -48,7 +32,56 @@
 }
 
 #dialogContent {
+    width: 100%;
+}
 
+#attendanceForm{
+    display: flex;
+    align-items: center;
+    width: 70vw;
+    max-width: 70vw;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#formInputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40vw;
+    gap: 2rem;
+}
+
+#inputF {
+    gap: 1rem;
+    max-width: 20vw;
+    display: flex;
+    flex-direction: row;
+    width: 20vw;
+}
+
+.iForm {
+    width: 20rem;
+    max-width: 20rem;
+}
+
+#btnRecordAttendance {
+    background-color: #19e32a;
+    color: black;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    max-height: 2rem;
+    height: 2rem;
+    max-width: 10rem;
+    width: 10rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+#btnRecordAttendance:hover {
+    background-color: #34c034;
 }
 
 #dialogFooter {

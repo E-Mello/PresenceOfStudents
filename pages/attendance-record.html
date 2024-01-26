@@ -5,14 +5,28 @@
     <dialog id="myDialog">
       <span class="close" onclick="closeDialog()">&times;</span>
       <h2 class="dialogTitle">Registrar Chamada</h2>
-      <div id="dialogContent"></div>
-      <div id="dialogFooter">
-        <button
-          id="btnRecordAttendance"
-          onclick="document.querySelector('dialog').close();"
-        >
-          Registrar Presença
-        </button>
+      <div id="dialogContent">
+        <form id="attendanceForm">
+          <div id="formInputs">
+            <div id="inputF">
+              <label id="lForm" for="name">Nome:</label>
+              <select class="iForm" name="" id="selectName">
+                <option value="">Selecione...</option>
+              </select>
+            </div>
+            <div id="inputF">
+              <label for="date">Data:</label>
+              <input type="date" id="date" required />
+            </div>
+          </div>
+          <button
+            type="button"
+            id="btnRecordAttendance"
+            onclick="recordAndClose()"
+          >
+            Registrar chamada
+          </button>
+        </form>
       </div>
     </dialog>
   </div>
