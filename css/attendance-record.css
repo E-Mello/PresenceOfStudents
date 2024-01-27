@@ -65,6 +65,10 @@
     max-width: 20rem;
 }
 
+#selectName option {
+    color: black;
+}
+
 #btnRecordAttendance {
     background-color: #19e32a;
     color: black;

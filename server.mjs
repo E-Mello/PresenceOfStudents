@@ -35,6 +35,67 @@ app.use(
 // Middleware para analisar solicitações JSON
 app.use(json());
 
+// Record Attendance
+app.post("/attendance", (req, res) => {
+  const { aluno_id, data, presente } = req.body;
+  const attendance = { aluno_id, data, presente };
+  connection.query(
+    "INSERT INTO attendance SET ?",
+    attendance,
+    (err, results) => {
+      if (err) {
+        console.error("Erro ao registrar chamada:", err);
+        res.status(500).send("Erro interno do servidor");
+      } else {
+        res.send("Chamada registrada com sucesso");
+      }
+    }
+  );
+});
+
+// Read Attendance
+app.get("/attendance", (req, res) => {
+  connection.query("SELECT * FROM chamadas", (err, results) => {
+    if (err) {
+      console.error("Erro ao buscar chamadas:", err);
+      res.status(500).send("Erro interno do servidor");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Update Attendance
+app.put("/attendance/:id", (req, res) => {
+  const id = req.params.id;
+  const newAttendance = req.body;
+  connection.query(
+    "UPDATE chamadas SET ? WHERE id = ?",
+    [newAttendance, id],
+    (err, results) => {
+      if (err) {
+        console.error("Erro ao atualizar chamada:", err);
+        res.status(500).send("Erro interno do servidor");
+      } else {
+        res.send("Chamada atualizada com sucesso");
+      }
+    }
+  );
+});
+
+// Delete Attendance
+app.delete("/attendance/:id", (req, res) => {
+  const id = req.params.id;
+  connection.query("DELETE FROM chamadas WHERE id = ?", id, (err, results) => {
+    if (err) {
+      console.error("Erro ao deletar chamada:", err);
+      res.status(500).send("Erro interno do servidor");
+    } else {
+      res.send("Chamada deletada com sucesso");
+    }
+  });
+});
+
 // Create students
 app.post("/students", (req, res) => {
   const { nome, email } = req.body;
