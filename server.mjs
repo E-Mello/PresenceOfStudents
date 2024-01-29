@@ -55,7 +55,7 @@ app.post("/attendance", (req, res) => {
 
 // Read Attendance
 app.get("/attendance", (req, res) => {
-  connection.query("SELECT * FROM chamadas", (err, results) => {
+  connection.query("SELECT * FROM attendance", (err, results) => {
     if (err) {
       console.error("Erro ao buscar chamadas:", err);
       res.status(500).send("Erro interno do servidor");
@@ -70,7 +70,7 @@ app.put("/attendance/:id", (req, res) => {
   const id = req.params.id;
   const newAttendance = req.body;
   connection.query(
-    "UPDATE chamadas SET ? WHERE id = ?",
+    "UPDATE attendance SET ? WHERE id = ?",
     [newAttendance, id],
     (err, results) => {
       if (err) {
@@ -86,14 +86,18 @@ app.put("/attendance/:id", (req, res) => {
 // Delete Attendance
 app.delete("/attendance/:id", (req, res) => {
   const id = req.params.id;
-  connection.query("DELETE FROM chamadas WHERE id = ?", id, (err, results) => {
-    if (err) {
-      console.error("Erro ao deletar chamada:", err);
-      res.status(500).send("Erro interno do servidor");
-    } else {
-      res.send("Chamada deletada com sucesso");
+  connection.query(
+    "DELETE FROM attendance WHERE id = ?",
+    id,
+    (err, results) => {
+      if (err) {
+        console.error("Erro ao deletar chamada:", err);
+        res.status(500).send("Erro interno do servidor");
+      } else {
+        res.send("Chamada deletada com sucesso");
+      }
     }
-  });
+  );
 });
 
 // Create students

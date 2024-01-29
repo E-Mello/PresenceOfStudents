@@ -36,6 +36,30 @@
   >
     Efetuar Chamada
   </button>
+  <dialog id="editDialog">
+    <span class="close" onclick="closeEditDialog()">&times;</span>
+    <h2 class="dialogTitle">Editar Chamada</h2>
+    <div id="dialogContent">
+      <form id="editAttendanceForm">
+        <div id="formInputs">
+          <div id="inputF">
+            <label id="lForm" for="selectName">Nome:</label>
+            <select class="iForm" id="selectNameEdit">
+              <option value="">Selecione...</option>
+            </select>
+          </div>
+          <div id="inputF">
+            <label for="date">Data:</label>
+            <input type="date" id="dateEdit" required />
+          </div>
+        </div>
+        <button type="button" id="btnEditAttendance" onclick="editAndClose()">
+          Editar chamada
+        </button>
+      </form>
+    </div>
+  </dialog>
+
   <table id="attendanceTable">
     <thead>
       <tr>

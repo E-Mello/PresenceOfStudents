@@ -31,7 +31,7 @@ document.querySelectorAll(".sidebar a").forEach((link) => {
           // busca os estudantes e renderiza eles nos options do select
           fetchStudentsAndRenderSelect();
           // Carrega a tabela de chamadas efetuadas
-          loadAttendanceTable();
+          readAttendances();
 
           // Preenche o campo data com o dia de hoje
           const today = new Date();
