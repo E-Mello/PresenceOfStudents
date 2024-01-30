@@ -13,12 +13,23 @@ dotenv.config();
 // Permitir vários hosts
 const allowedOrigins = [
   "http://127.0.0.1:5500",
-  "https://presence-of-students.vercel.app/",
+  "https://presence-of-students.vercel.app",
 ];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+      // Verifica se a origem está na lista de permitidos ou se é uma requisição local
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        origin.startsWith("http://localhost")
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
 
