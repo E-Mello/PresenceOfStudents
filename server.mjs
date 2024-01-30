@@ -16,23 +16,6 @@ const allowedOrigins = [
   "https://presence-of-students.vercel.app",
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Verifica se a origem está na lista de permitidos ou se é uma requisição local
-      if (
-        !origin ||
-        allowedOrigins.includes(origin) ||
-        origin.startsWith("http://localhost")
-      ) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-  })
-);
-
 // Configuração do banco de dados
 const pool = new Pool({
   database: process.env.POSTGRES_DATABASE,
@@ -41,6 +24,23 @@ const pool = new Pool({
   password: process.env.POSTGRES_PASSWORD,
   port: process.env.POSTGRES_PORT || 5432,
   ssl: { rejectUnauthorized: false },
+});
+
+// Configuração manual do CORS
+app.use((req, res, next) => {
+  const origin = req.get("origin");
+  if (
+    !origin ||
+    allowedOrigins.includes(origin) ||
+    origin.startsWith("http://localhost")
+  ) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
 });
 
 // Middleware para analisar solicitações JSON
