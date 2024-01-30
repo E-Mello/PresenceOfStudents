@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 function carregarAlunos() {
   // Lógica para carregar a lista de alunos do back-end (usando AJAX/fetch)
-  fetch("https://presence-of-students.vercel.app/students")
+  fetch("http://localhost:3000/students")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -80,19 +80,16 @@ function renderizarAlunos() {
 async function adicionarAluno() {
   try {
     // Lógica para adicionar um aluno (usando AJAX/fetch para interagir com o back-end)
-    const response = await fetch(
-      "https://presence-of-students.vercel.app/students",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nome: document.getElementById("nome").value,
-          email: document.getElementById("email").value,
-        }),
-      }
-    );
+    const response = await fetch("http://localhost:3000/students", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome: document.getElementById("nome").value,
+        email: document.getElementById("email").value,
+      }),
+    });
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -141,7 +138,7 @@ async function editarAluno() {
   // Lógica para editar um aluno (usando AJAX/fetch)
   try {
     const response = await fetch(
-      "https://presence-of-students.vercel.app/students/" + idStudentEdit,
+      "http://localhost:3000/students/" + idStudentEdit,
       {
         method: "PUT",
         headers: {
@@ -174,12 +171,9 @@ async function editarAluno() {
 async function excluirAluno(id) {
   // Lógica para excluir um aluno (usando AJAX/fetch)
   try {
-    const response = await fetch(
-      "https://presence-of-students.vercel.app/students/" + id,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch("http://localhost:3000/students/" + id, {
+      method: "DELETE",
+    });
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
