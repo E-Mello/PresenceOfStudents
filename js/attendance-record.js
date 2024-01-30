@@ -126,6 +126,7 @@ async function recordAndClose() {
     // Print do retorno
     console.log("Response Data:", response);
 
+    clearTable();
     // Recarrega a tabela de presença
     readAttendances();
     closeDialog();
@@ -139,12 +140,48 @@ async function recordAndClose() {
 
 // Função para carregar chamadas ao carregar a página
 function renderAttendanceTable() {
-  const tabela = document.getElementById("attendanceTable");
+  // Agrupar as presenças por dia
+  const attendancesByDay = {};
+  attendances.forEach((attendance) => {
+    if (!attendancesByDay[attendance.data]) {
+      attendancesByDay[attendance.data] = [];
+    }
+    attendancesByDay[attendance.data].push(attendance);
+  });
 
-  if (tabela) {
-    // Verifica se a tabela existe
-    attendances.forEach((attendance) => {
-      // Encontre o aluno correspondente na lista de alunos
+  // Criar acordeões dinamicamente
+  const accordionContainer = document.getElementById("accordionContainer");
+
+  Object.keys(attendancesByDay).forEach((day, index) => {
+    const accordion = document.createElement("div");
+    accordion.className = "accordion";
+    accordion.textContent = day;
+    accordion.onclick = () => toggleAccordion(`panel${index + 1}`);
+
+    const panel = document.createElement("div");
+    panel.className = "panel";
+    panel.id = `panel${index + 1}`;
+
+    const tabela = document.createElement("table");
+    tabela.innerHTML = `
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Presença</th>
+            <th>Data da presença</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      `;
+
+    // Adicionar acordeão e tabela ao contêiner
+    accordionContainer.appendChild(accordion);
+    accordionContainer.appendChild(panel);
+    panel.appendChild(tabela);
+
+    attendancesByDay[day].forEach((attendance) => {
+      // Encontrar o aluno correspondente na lista de alunos
       const student = studentsAttendance.find(
         (student) => student.id === attendance.aluno_id
       );
@@ -172,8 +209,15 @@ function renderAttendanceTable() {
         ')">Remover Chamada</button>' +
         "</div>";
     });
+  });
+}
+
+function toggleAccordion(dayId) {
+  var panel = document.getElementById(dayId);
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
   } else {
-    console.error("Tabela não encontrada na DOM.");
+    panel.style.display = "block";
   }
 }
 
