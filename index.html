@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css//login.css">
-  <title>Login</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css//login.css" />
+    <link rel="shortcut icon" href="./assets/Logo.png" type="image/x-icon" />
+    <title>Livro de Presença</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required />
 
-<div class="login-container">
-  <h2>Login</h2>
-  <form id="loginForm">
-    <label for="username">Usuário:</label>
-    <input type="text" id="username" name="username" required>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required />
 
-    <label for="password">Senha:</label>
-    <input type="password" id="password" name="password" required>
+        <button type="button" onclick="realizarLogin()">Entrar</button>
+      </form>
+    </div>
 
-    <button type="button" onclick="realizarLogin()">Entrar</button>
-  </form>
-</div>
-
-
-<script src="./js/login.js"></script>
-</body>
+    <script src="./js/login.js"></script>
+  </body>
 </html>

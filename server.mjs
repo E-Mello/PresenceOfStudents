@@ -10,15 +10,9 @@ const port = 3000;
 const { json } = pkg;
 dotenv.config();
 
-// Permitir vários hosts
-const allowedOrigins = [
-  "http://127.0.0.1:5500",
-  "https://presence-of-students.vercel.app",
-];
-
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "https://presence-of-students.vercel.app",
   })
 );
 
