@@ -10,13 +10,6 @@ const port = 3000;
 const { json } = pkg;
 dotenv.config();
 
-// Permitir vários hosts
-const allowedOrigins = [
-  "http://127.0.0.1:5500",
-  "http://localhost:3000/",
-  "https://presence-of-students.vercel.app",
-];
-
 // Configuração do banco de dados
 const pool = new Pool({
   database: process.env.POSTGRES_DATABASE,
@@ -27,16 +20,9 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-// Configuração manual do CORS
+// Middleware para permitir qualquer origem
 app.use((req, res, next) => {
-  const origin = req.get("origin");
-  if (
-    !origin ||
-    allowedOrigins.includes(origin) ||
-    origin.startsWith("http://localhost")
-  ) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
