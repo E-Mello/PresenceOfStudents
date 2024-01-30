@@ -13,6 +13,7 @@ dotenv.config();
 // Permitir vários hosts
 const allowedOrigins = [
   "http://127.0.0.1:5500",
+  "http://localhost:3000/",
   "https://presence-of-students.vercel.app",
 ];
 
