@@ -10,15 +10,17 @@ const port = 3000;
 const { json } = pkg;
 dotenv.config();
 
-// Middleware para permitir qualquer origem
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// Permitir vários hosts
+const allowedOrigins = [
+  "http://127.0.0.1:5500",
+  "https://presence-of-students.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+  })
+);
 
 // Configuração do banco de dados
 const pool = new Pool({
