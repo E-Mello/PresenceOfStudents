@@ -97,6 +97,7 @@ async function adicionarAluno() {
     // Print do retorno
     console.log("Response Data:", response);
 
+    limparTabela();
     // Recarregar os alunos
     carregarAlunos();
     console.log("Aluno adicionado com sucesso!");
